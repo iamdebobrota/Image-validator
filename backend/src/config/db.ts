@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm';
 import { env } from './env';
 import { Image } from '../entities/Image';
+import { ProcessingJob } from '../entities/ProcessingJob';
+import { ImageVariant } from '../entities/ImageVariant';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -9,7 +11,7 @@ export const AppDataSource = new DataSource({
   database: env.db.name,
   username: env.db.user,
   password: env.db.password,
-  entities: [Image],
+  entities: [Image, ProcessingJob, ImageVariant],
   synchronize: true,
   logging: false,
 });

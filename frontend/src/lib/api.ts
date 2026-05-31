@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { ImageRecord } from '../types/image';
+import type { ImageRecord, PipelineJob, ImageVariant } from '../types/image';
 
 const api = axios.create({
   baseURL: '/api',
@@ -31,4 +31,22 @@ export async function fetchImages(): Promise<ImageRecord[]> {
 
 export async function deleteImage(id: string): Promise<void> {
   await api.delete(`/images/${id}`);
+}
+
+export async function fetchPipelineStatus(imageId: string): Promise<PipelineJob | null> {
+  try {
+    const { data } = await api.get<PipelineJob>(`/images/${imageId}/status`);
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchVariants(imageId: string): Promise<ImageVariant[]> {
+  try {
+    const { data } = await api.get<ImageVariant[]>(`/images/${imageId}/variants`);
+    return data;
+  } catch {
+    return [];
+  }
 }

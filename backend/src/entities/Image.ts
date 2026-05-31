@@ -69,6 +69,9 @@ export class Image {
   @Column({ nullable: true, type: 'varchar' })
   rejectionDetail!: string | null;
 
+  @Column({ type: 'varchar', nullable: true })
+  pipelineStatus!: string | null;
+
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: Date;
 

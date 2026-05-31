@@ -6,6 +6,9 @@ import { AppDataSource } from './config/db';
 import imagesRouter from './routes/images.router';
 import { errorHandler } from './middleware/errorHandler';
 import { loadModels } from './services/face.service';
+import { startConversionWorker } from './workers/conversion.worker';
+import { startCompressionWorker } from './workers/compression.worker';
+import { startVariantWorker } from './workers/variant.worker';
 
 async function bootstrap() {
   const app = express();
@@ -22,6 +25,11 @@ async function bootstrap() {
   loadModels().catch((err) => {
     console.warn('Face model pre-load failed, will retry on first request:', err.message);
   });
+
+  startConversionWorker();
+  startCompressionWorker();
+  startVariantWorker();
+  console.log('Pipeline workers started');
 
   app.listen(env.port, () => {
     console.log(`Server running on http://localhost:${env.port}`);

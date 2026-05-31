@@ -6,7 +6,8 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "load-test": "tsx scripts/load-test.ts"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
   "dependencies": {
     "@tensorflow/tfjs-node": "^4.22.0",
     "@vladmandic/face-api": "^1.7.15",
+    "bullmq": "^5.77.6",
     "cloudinary": "^2.10.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",

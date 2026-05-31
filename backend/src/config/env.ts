@@ -27,4 +27,8 @@ export const env = {
     phashThreshold: parseInt(process.env.PHASH_THRESHOLD ?? '10', 10),
     minFaceAreaRatio: parseFloat(process.env.MIN_FACE_AREA_RATIO ?? '0.02'),
   },
+
+  redis: {
+    url: process.env.REDIS_URL ?? 'redis://localhost:6379',
+  },
 };

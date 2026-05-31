@@ -19,6 +19,31 @@ export interface ImageRecord {
   height: number | null;
   rejectionReason: RejectionReason | null;
   rejectionDetail: string | null;
+  pipelineStatus: string | null;
+  createdAt: string;
+}
+
+export interface PipelineJob {
+  jobId: string;
+  imageId: string;
+  status: string;
+  currentStep: string | null;
+  errorMessage: string | null;
+  originalSizeBytes: number | null;
+  compressedSizeBytes: number | null;
+  compressionRatio: number | null;
+  attemptCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ImageVariant {
+  id: string;
+  variantType: 'thumbnail' | 'web' | 'full';
+  width: number;
+  height: number;
+  fileSizeBytes: number;
+  cloudinaryUrl: string;
   createdAt: string;
 }
 
